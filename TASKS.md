@@ -6,10 +6,10 @@ Migrate AI integration to OpenRouter (`OPENROUTER_API_KEY`) across vision plant 
 ## Active Work
 | Branch / Lane | Work | Status | Owner |
 | --- | --- | --- | --- |
-| `antigravity/issue-18-plant-catalog-kb` | Botanical catalog KB, botanical favicon & navigation refinements (Issue #18) | In Progress | Antigravity |
 | `main` | Test plant photo identification and tomato tracker with Cesar & goddaughter | In Progress | Cesar |
 
 ## Recently Done
+- [x] Botanical catalog KB, botanical favicon & navigation refinements: merged PR [#19](https://github.com/cesarwerlich/brota/pull/19) and closed Issue [#18](https://github.com/cesarwerlich/brota/issues/18).
 - [x] Minimalist UI redesign, uncluttering & separate plant guide flow: merged PR [#17](https://github.com/cesarwerlich/brota/pull/17) and closed Issue [#16](https://github.com/cesarwerlich/brota/issues/16).
 - [x] Verified live production deployment on Vercel (`https://brota-cesarwerlichs-projects.vercel.app/`).
 - [x] Adopted coding-agent harness and workflow practices: merged PR [#15](https://github.com/cesarwerlich/brota/pull/15) and closed Issue [#14](https://github.com/cesarwerlich/brota/issues/14).
