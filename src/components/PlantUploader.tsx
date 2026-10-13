@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { UploadCloud, Camera, Image as ImageIcon, Sparkles, AlertCircle, RefreshCw, CheckCircle2 } from 'lucide-react';
 import { IdentifiedPlant } from '../types';
 import { SAMPLE_PLANTS } from '../data/samplePlants';
+import { optimizePlantImage } from '../utils/imageUtils';
 
 interface PlantUploaderProps {
   onPlantIdentified: (plant: IdentifiedPlant) => void;
@@ -35,24 +36,20 @@ export function PlantUploader({
     }
   };
 
-  const processFile = (file: File) => {
+  const processFile = async (file: File) => {
     if (!file.type.startsWith('image/')) {
       setError('Por favor, envie um arquivo de imagem válido (JPEG, PNG, WEBP).');
       return;
     }
 
     setError(null);
-    setSelectedMimeType(file.type);
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const result = e.target?.result as string;
-      setSelectedImage(result);
-    };
-    reader.onerror = () => {
+    try {
+      const { dataUrl, mimeType } = await optimizePlantImage(file);
+      setSelectedMimeType(mimeType);
+      setSelectedImage(dataUrl);
+    } catch {
       setError('Falha ao processar a imagem selecionada.');
-    };
-    reader.readAsDataURL(file);
+    }
   };
 
   const handleDrop = (e: React.DragEvent) => {
