@@ -66,3 +66,30 @@ Response:
 }
 ```
 Use this endpoint for container/platform liveness and readiness probes.
+
+---
+
+## 5. Deploying to Vercel
+
+Brota is configured to run on Vercel as a Vite SPA frontend + Serverless API routes:
+- Entry point for serverless API: `api/index.ts`
+- Routing & rewrites: configured in `vercel.json`
+- Static assets: built into `dist/`
+
+### Steps to Deploy on Vercel:
+1. Log in to your [Vercel Dashboard](https://vercel.com).
+2. Click **Add New...** → **Project**.
+3. Import the repository: `cesarwerlich/brota`.
+4. Configure Project Settings:
+   - **Framework Preset**: `Vite` (automatically detected).
+   - **Root Directory**: `./`
+   - **Build Command**: `vite build` (or leave default `npm run build`).
+   - **Output Directory**: `dist` (default for Vite).
+5. Add Environment Variables:
+   - `GEMINI_API_KEY`: Your Google Gemini API key.
+6. Click **Deploy**.
+7. Once deployed, test the health check:
+   ```
+   https://<your-project>.vercel.app/api/health
+   ```
+   It should return: `{"status":"ok","apiKeyConfigured":true}`.
