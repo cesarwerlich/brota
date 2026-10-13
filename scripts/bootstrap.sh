@@ -16,7 +16,7 @@ fi
 if [ ! -f .env ] && [ -f .env.example ]; then
   echo "==> Creating .env from .env.example..."
   cp .env.example .env
-  echo "⚠️ Remember to configure your GEMINI_API_KEY in .env"
+  echo "⚠️ Remember to configure your OPENROUTER_API_KEY in .env"
 fi
 
 echo "✅ Bootstrap complete. Run ./scripts/check.sh to verify or npm run dev to start."

@@ -1,8 +1,10 @@
-# CLAUDE.md
+@AGENTS.md
 
-Instructions for Claude Code.
+# Claude Code
 
-See `AGENTS.md` for canonical project instructions, architecture conventions, child/family safety rules, and verification standards.
+Claude Code reads this file instead of `AGENTS.md`, so the `@AGENTS.md` import above
+is what loads the shared contract. Keep policy in `AGENTS.md`; add only Claude-specific
+notes here.
 
 ## Quick Commands
 - Bootstrap: `./scripts/bootstrap.sh`

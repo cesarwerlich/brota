@@ -19,7 +19,7 @@ Comprises:
    ```bash
    npm run lint # runs `tsc --noEmit`
    ```
-   Validates type correctness across React components, Express route handlers, and `@google/genai` payloads.
+   Validates type correctness across React components, Express route handlers, and OpenRouter payloads.
 
 2. **Production Bundle Verification**:
    ```bash
