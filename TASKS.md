@@ -6,16 +6,16 @@ Configure Brota for serverless deployment on Vercel, ensuring zero-cost hosting,
 ## Active Work
 | Branch / Lane | Work | Status | Owner |
 | --- | --- | --- | --- |
-| `feat/vercel-deployment-scaffold` | Issue #8: Setup Vercel directory structure, rewrites, and client photo optimizer | In Progress | Cesar / Antigravity |
+| `main` | Issue #8: Deploy Brota to Vercel and verify on mobile | In Progress | Cesar |
 
 ## Recently Done
 - [x] Configured Vercel serverless structure: `api/app.ts`, `api/index.ts`, `vercel.json`.
 - [x] Refactored `server.ts` to share `api/app.ts` while keeping local dev (`npm run dev`) and standalone Node intact.
 - [x] Added client-side image downscaling (`src/utils/imageUtils.ts`) in `PlantUploader.tsx` to prevent 413 Payload Too Large on Vercel's 4.5MB limit.
 - [x] Documented Vercel setup runbook in `docs/operations.md` and ADR-0004 in `DECISIONS.md`.
-- [x] Ran `./scripts/check.sh` and verified both `/api/health` and `/health` route resolution.
+- [x] Verified build (`./scripts/check.sh`), merged PR [#9](https://github.com/cesarwerlich/brota/pull/9), and closed Issue [#8](https://github.com/cesarwerlich/brota/issues/8).
 
 ## Next Actions
-1. Commit and push `feat/vercel-deployment-scaffold` to open PR for Issue #8.
-2. Link project on Vercel dashboard and add `GEMINI_API_KEY`.
-3. Verify live URL and complete smoke testing on mobile.
+1. Link repository `cesarwerlich/brota` on the Vercel dashboard and add `GEMINI_API_KEY`.
+2. Deploy and test the live URL (`https://<project>.vercel.app/api/health`).
+3. Smoke test on mobile (photo upload, plant identification, chat with Flora, Meu Jardim saving).
