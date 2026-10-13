@@ -7,7 +7,7 @@ import { createServer as createViteServer } from 'vite';
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 // Support base64 image uploads up to 25MB
 app.use(express.json({ limit: '25mb' }));
@@ -387,7 +387,7 @@ async function startServer() {
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Gardening Assistant server running on http://localhost:${PORT}`);
+    console.log(`Brota server running on http://localhost:${PORT}`);
   });
 }
 

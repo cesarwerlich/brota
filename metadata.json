@@ -1,6 +1,6 @@
 {
-  "name": "Plant Identifier & Gardening Assistant",
-  "description": "Identificador botânico de plantas por foto com inteligência artificial, diagnósticos de saúde, guias detalhados de cultivo e consultoria com assistente botânica especializada.",
+  "name": "Brota — Jardinagem & Aprendizado com IA",
+  "description": "Aprenda e pratique jardinagem em família com apoio de IA. Identificação botânica de flores, ervas e hortaliças (especialmente tomates), diagnósticos de saúde e acompanhamento de cultivo.",
   "requestFramePermissions": ["camera"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

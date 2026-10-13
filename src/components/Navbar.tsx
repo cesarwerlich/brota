@@ -20,14 +20,14 @@ export function Navbar({ activeTab, setActiveTab, gardenCount, onOpenSubscriptio
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-semibold text-lg sm:text-xl tracking-tight text-white font-serif-heading">
-                  FloraGuia
+                  Brota
                 </span>
                 <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-950 text-emerald-300 border border-emerald-800/80">
                   <Sparkles className="w-3 h-3 text-emerald-400" />
-                  IA Botânica Especializada
+                  Jardinagem em Família &amp; IA
                 </span>
               </div>
-              <p className="text-xs text-stone-400 hidden sm:block">Identificador de Plantas &amp; Guia Completo de Cultivo</p>
+              <p className="text-xs text-stone-400 hidden sm:block">Aprenda e cultive flores, ervas e hortaliças</p>
             </div>
           </div>
 

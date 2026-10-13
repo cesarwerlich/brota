@@ -245,11 +245,11 @@ export default function App() {
       <footer className="bg-white border-t border-stone-200/90 py-6 mb-16 sm:mb-0 text-center text-xs text-stone-500">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <span className="font-semibold text-stone-700">FloraGuia</span>
+            <span className="font-semibold text-stone-700">Brota</span>
             <span>•</span>
-            <span>Inteligência Artificial Botânica Especializada</span>
+            <span>Jardinagem e Aprendizado em Família com IA</span>
           </div>
-          <div>Cultivo Botânico Certificado &amp; Diagnóstico de Plantas</div>
+          <div>Flores, Ervas &amp; Tomates • Cuidados e Observação Prática</div>
         </div>
       </footer>
 
