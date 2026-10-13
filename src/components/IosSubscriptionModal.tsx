@@ -89,7 +89,7 @@ export function IosSubscriptionModal({ isOpen, onClose }: IosSubscriptionModalPr
               <div className="text-center space-y-1.5 py-2">
                 <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">
                   <Leaf className="w-3.5 h-3.5 text-emerald-600" />
-                  FloraGuia Premium iOS
+                  Brota iOS
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-bold font-serif-heading text-stone-900">
                   Cuide do seu jardim como um botânico profissional
@@ -274,7 +274,7 @@ export function IosSubscriptionModal({ isOpen, onClose }: IosSubscriptionModalPr
 
         {/* Modal Footer */}
         <div className="px-6 py-3.5 bg-stone-50 border-t border-stone-200 flex items-center justify-between text-xs text-stone-500 shrink-0">
-          <span>FloraGuia • Otimizado para iOS &amp; Web</span>
+          <span>Brota • Otimizado para iOS &amp; Web</span>
           <button
             type="button"
             onClick={onClose}
