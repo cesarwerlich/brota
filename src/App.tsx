@@ -13,11 +13,12 @@ import { IosSubscriptionModal } from './components/IosSubscriptionModal';
 import { BottomNav } from './components/BottomNav';
 import { IdentifiedPlant, ChatMessage } from './types';
 import { SAMPLE_PLANTS } from './data/samplePlants';
-import { CheckCircle, ArrowLeft } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<'identify' | 'chat' | 'garden'>('identify');
-  const [currentPlant, setCurrentPlant] = useState<IdentifiedPlant | null>(SAMPLE_PLANTS[0]);
+  // Starts null on initial entry for a super-clean, uncluttered first impression
+  const [currentPlant, setCurrentPlant] = useState<IdentifiedPlant | null>(null);
   const [activeChatPlant, setActiveChatPlant] = useState<IdentifiedPlant | null>(SAMPLE_PLANTS[0]);
   const [chatInitialPrompt, setChatInitialPrompt] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -35,7 +36,7 @@ export default function App() {
     } catch (e) {
       console.error('Failed to parse garden storage:', e);
     }
-    // Default initial collection with our first sample
+    // Default initial collection with our first sample (Cherry Tomato)
     return [SAMPLE_PLANTS[0]];
   });
 
@@ -53,9 +54,9 @@ export default function App() {
       {
         id: 'welcome-bot-msg',
         role: 'model',
-        content: `👋 **Olá, jardineiro(a)!** Sou a Flora, sua especialista em botânica e companheira de jardinagem.\n\nSeja para diagnosticar folhas amareladas, ajustar a rotina de rega, preparar substratos ideais ou propagar mudas, estou aqui para orientar você. Você também pode enviar a foto de qualquer planta na aba **Identificar & Cuidados** para identificação botânica instantânea com inteligência artificial!`,
+        content: `👋 **Olá!** Sou a **Flora**, sua guia botânica no Brota.\n\nCuidar de plantas é um aprendizado diário com as mãos na terra. Pode me perguntar sobre frequência de rega, folhas amareladas, receitas caseiras contra pragas ou como fazer mudas!`,
         timestamp: new Date().toISOString(),
-        modelUsed: 'Assistente Flora',
+        modelUsed: 'Flora',
       },
     ];
   });
@@ -82,18 +83,20 @@ export default function App() {
     setToastMessage(msg);
     setTimeout(() => {
       setToastMessage(null);
-    }, 3200);
+    }, 2800);
   };
 
   const handlePlantIdentified = (plant: IdentifiedPlant) => {
     setCurrentPlant(plant);
     setActiveChatPlant(plant);
-    showToast(`Identificada: "${plant.commonName}"!`);
+    showToast(`"${plant.commonName}" carregada!`);
   };
 
   const handleSaveToGarden = (plant: IdentifiedPlant) => {
     setGarden((prev) => {
-      const exists = prev.some((p) => p.id === plant.id || (p.scientificName === plant.scientificName && p.commonName === plant.commonName));
+      const exists = prev.some(
+        (p) => p.id === plant.id || (p.scientificName === plant.scientificName && p.commonName === plant.commonName)
+      );
       if (exists) {
         showToast(`"${plant.commonName}" já está no seu jardim.`);
         return prev;
@@ -116,7 +119,7 @@ export default function App() {
     if (currentPlant && currentPlant.id === plantId) {
       setCurrentPlant({ ...currentPlant, lastWatered: today });
     }
-    showToast('Data de rega atualizada para hoje! 💧');
+    showToast('Rega registrada para hoje! 💧');
   };
 
   const handleAskChatbot = (prompt?: string) => {
@@ -142,74 +145,59 @@ export default function App() {
 
   const handleAddSamplePlants = (samples: IdentifiedPlant[]) => {
     setGarden(samples);
-    showToast('3 plantas de exemplo carregadas no seu jardim.');
+    showToast('Plantas de exemplo carregadas no jardim.');
   };
 
   return (
-    <div className="min-h-screen bg-stone-50 text-stone-900 flex flex-col font-sans">
+    <div className="min-h-screen bg-stone-50 text-stone-900 flex flex-col font-sans selection:bg-emerald-100 selection:text-emerald-950">
       {/* Top Navigation */}
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         gardenCount={garden.length}
         onOpenSubscriptionModal={() => setIsIosModalOpen(true)}
+        onResetIdentify={() => setCurrentPlant(null)}
       />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 pb-24 sm:pb-8">
-
+      <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-6 pb-24 sm:pb-12">
         {/* Toast Notification */}
         {toastMessage && (
-          <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 rounded-xl bg-stone-900 text-white text-sm font-medium shadow-xl border border-stone-700 animate-in fade-in slide-in-from-bottom-2">
-            <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
+          <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-stone-900 text-white text-xs font-medium shadow-lg animate-in fade-in slide-in-from-bottom-2">
+            <CheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
             <span>{toastMessage}</span>
           </div>
         )}
 
-        {/* Tab 1: Identify & Care */}
+        {/* Tab 1: Identify & Plant View */}
         {activeTab === 'identify' && (
-          <div className="space-y-8">
-            <PlantUploader
-              onPlantIdentified={handlePlantIdentified}
-              isLoading={isLoading}
-              setIsLoading={setIsLoading}
-              error={error}
-              setError={setError}
-            />
-
-            {currentPlant && (
-              <div className="pt-2">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-stone-500">
-                    Espécime Analisado &amp; Guia de Cultivo
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    className="text-xs text-emerald-700 hover:text-emerald-900 font-medium inline-flex items-center gap-1 cursor-pointer"
-                  >
-                    <ArrowLeft className="w-3.5 h-3.5 rotate-90" />
-                    Enviar Outra Foto
-                  </button>
-                </div>
-
-                <PlantCareView
-                  plant={currentPlant}
-                  onAskChatbot={handleAskChatbot}
-                  onSaveToGarden={handleSaveToGarden}
-                  isSavedInGarden={garden.some(
-                    (p) => p.id === currentPlant.id || p.scientificName === currentPlant.scientificName
-                  )}
-                  onWaterPlant={handleWaterPlant}
-                />
-              </div>
+          <div>
+            {currentPlant ? (
+              <PlantCareView
+                plant={currentPlant}
+                onAskChatbot={handleAskChatbot}
+                onSaveToGarden={handleSaveToGarden}
+                isSavedInGarden={garden.some(
+                  (p) => p.id === currentPlant.id || p.scientificName === currentPlant.scientificName
+                )}
+                onWaterPlant={handleWaterPlant}
+                onBackToUpload={() => setCurrentPlant(null)}
+              />
+            ) : (
+              <PlantUploader
+                onPlantIdentified={handlePlantIdentified}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+                error={error}
+                setError={setError}
+              />
             )}
           </div>
         )}
 
-        {/* Tab 2: Botanist Chat */}
+        {/* Tab 2: Flora Chat */}
         {activeTab === 'chat' && (
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             <GardeningChatbot
               messages={chatMessages}
               setMessages={setChatMessages}
@@ -230,26 +218,25 @@ export default function App() {
             onWaterPlant={handleWaterPlant}
             onConsultPlant={handleConsultFromGarden}
             onAddSamplePlants={handleAddSamplePlants}
-            onGoToIdentify={() => setActiveTab('identify')}
+            onGoToIdentify={() => {
+              setCurrentPlant(null);
+              setActiveTab('identify');
+            }}
           />
         )}
       </main>
 
-      {/* iOS Subscription & Store Guide Modal */}
+      {/* Minimalist Mobile App / About Modal */}
       <IosSubscriptionModal
         isOpen={isIosModalOpen}
         onClose={() => setIsIosModalOpen(false)}
       />
 
-      {/* Footer */}
-      <footer className="bg-white border-t border-stone-200/90 py-6 mb-16 sm:mb-0 text-center text-xs text-stone-500">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-stone-700">Brota</span>
-            <span>•</span>
-            <span>Jardinagem e Aprendizado em Família com IA</span>
-          </div>
-          <div>Flores, Ervas &amp; Tomates • Cuidados e Observação Prática</div>
+      {/* Discreet Footer */}
+      <footer className="py-6 border-t border-stone-200/60 text-center text-xs text-stone-400 hidden sm:block">
+        <div className="max-w-5xl mx-auto px-4 flex items-center justify-between">
+          <span>Brota • Jardinagem e Aprendizado em Família</span>
+          <span>Tomates, Ervas &amp; Flores</span>
         </div>
       </footer>
 

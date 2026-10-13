@@ -1,5 +1,13 @@
 import React, { useState, useRef } from 'react';
-import { UploadCloud, Camera, Image as ImageIcon, Sparkles, AlertCircle, RefreshCw, CheckCircle2 } from 'lucide-react';
+import {
+  UploadCloud,
+  Camera,
+  Image as ImageIcon,
+  Sparkles,
+  AlertCircle,
+  RefreshCw,
+  ArrowRight
+} from 'lucide-react';
 import { IdentifiedPlant } from '../types';
 import { SAMPLE_PLANTS } from '../data/samplePlants';
 import { optimizePlantImage } from '../utils/imageUtils';
@@ -38,7 +46,7 @@ export function PlantUploader({
 
   const processFile = async (file: File) => {
     if (!file.type.startsWith('image/')) {
-      setError('Por favor, envie um arquivo de imagem válido (JPEG, PNG, WEBP).');
+      setError('Por favor, envie um arquivo de imagem válido (JPEG, PNG ou WEBP).');
       return;
     }
 
@@ -48,7 +56,7 @@ export function PlantUploader({
       setSelectedMimeType(mimeType);
       setSelectedImage(dataUrl);
     } catch {
-      setError('Falha ao processar a imagem selecionada.');
+      setError('Não foi possível processar a foto. Tente novamente.');
     }
   };
 
@@ -70,7 +78,7 @@ export function PlantUploader({
 
   const handleIdentify = async () => {
     if (!selectedImage) {
-      setError('Por favor, selecione ou tire uma foto da planta primeiro.');
+      setError('Por favor, tire uma foto ou escolha uma imagem primeiro.');
       return;
     }
 
@@ -108,57 +116,43 @@ export function PlantUploader({
       onPlantIdentified(completePlant);
     } catch (err: any) {
       console.error('Identification error:', err);
-      setError(err?.message || 'Não foi possível identificar a planta. Verifique a imagem e tente novamente.');
+      setError(err?.message || 'Não foi possível identificar a planta. Verifique a iluminação e tente novamente.');
     } finally {
       setIsLoading(false);
     }
   };
 
-  const loadSample = (sample: IdentifiedPlant) => {
-    setError(null);
-    onPlantIdentified(sample);
-  };
-
   return (
-    <div id="plant-uploader-section" className="bg-white rounded-2xl border border-stone-200/90 shadow-sm p-5 sm:p-7">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5 pb-4 border-b border-stone-100">
-        <div>
-          <h2 className="text-xl sm:text-2xl font-semibold text-stone-900 font-serif-heading">
-            Identificação de Plantas por Foto
-          </h2>
-          <p className="text-sm text-stone-600 mt-0.5">
-            Envie uma foto nítida de qualquer folha, flor ou vaso para obter diagnóstico de saúde instantâneo e guia completo de cultivo.
-          </p>
-        </div>
-        <div className="flex items-center gap-1.5 self-start sm:self-auto px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold border border-emerald-200">
-          <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-          Identificação Botânica IA
-        </div>
+    <div className="max-w-2xl mx-auto py-4 sm:py-8 space-y-8 animate-in fade-in duration-300">
+      {/* Serene minimal header */}
+      <div className="text-center space-y-2">
+        <h1 className="text-2xl sm:text-3xl font-bold font-serif-heading text-stone-900 tracking-tight">
+          Que planta vamos cuidar hoje?
+        </h1>
+        <p className="text-sm text-stone-500 max-w-md mx-auto leading-relaxed">
+          Fotografe uma folha ou vaso para identificar a espécie, verificar a saúde e ver os cuidados práticos.
+        </p>
       </div>
 
       {error && (
-        <div className="mb-5 p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 flex items-start gap-3 text-sm">
-          <AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
-          <div className="flex-1">
-            <span className="font-semibold">Aviso de Identificação: </span>
-            {error}
-          </div>
+        <div className="p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 flex items-center gap-2.5 text-xs sm:text-sm">
+          <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
+          <span>{error}</span>
         </div>
       )}
 
-      {/* Upload Dropzone */}
+      {/* Upload Drop Canvas */}
       <div
-        id="dropzone-container"
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
         onDragOver={handleDrag}
         onDrop={handleDrop}
-        className={`relative border-2 border-dashed rounded-xl transition-all duration-200 p-6 sm:p-8 text-center flex flex-col items-center justify-center ${
+        className={`relative border-2 border-dashed rounded-3xl transition-all duration-200 p-8 sm:p-12 text-center flex flex-col items-center justify-center bg-white ${
           dragActive
-            ? 'border-emerald-600 bg-emerald-50/60'
+            ? 'border-emerald-600 bg-emerald-50/40'
             : selectedImage
-            ? 'border-stone-300 bg-stone-50/50'
-            : 'border-stone-200 hover:border-emerald-500 hover:bg-emerald-50/20 bg-stone-50/40'
+            ? 'border-stone-300'
+            : 'border-stone-200 hover:border-stone-400'
         }`}
       >
         <input
@@ -179,141 +173,120 @@ export function PlantUploader({
 
         {selectedImage ? (
           <div className="w-full flex flex-col items-center">
-            <div className="relative w-48 h-48 sm:w-64 sm:h-64 rounded-xl overflow-hidden shadow-md border-2 border-white mb-4 bg-stone-900">
+            <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden shadow-sm border border-stone-200 mb-4 bg-stone-900">
               <img
                 src={selectedImage}
-                alt="Espécime selecionado"
+                alt="Foto selecionada"
                 className="w-full h-full object-cover"
               />
               <button
                 type="button"
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-2 right-2 px-2.5 py-1 rounded-lg bg-stone-900/80 hover:bg-stone-900 text-white text-xs font-medium backdrop-blur-sm transition-colors cursor-pointer"
+                className="absolute top-2 right-2 px-2.5 py-1 rounded-lg bg-black/60 hover:bg-black/80 text-white text-xs backdrop-blur-xs transition-colors cursor-pointer"
               >
-                Trocar Foto
+                Trocar
               </button>
             </div>
-            <p className="text-xs text-stone-500 mb-2">Imagem do espécime carregada e pronta para análise botânica</p>
+
+            <div className="w-full max-w-sm space-y-3">
+              <input
+                type="text"
+                placeholder="Observação ou dúvida (opcional)"
+                value={userNote}
+                onChange={(e) => setUserNote(e.target.value)}
+                className="w-full px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-stone-200 focus:outline-none focus:ring-1 focus:ring-emerald-600 placeholder:text-stone-400"
+              />
+
+              <div className="flex items-center justify-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedImage(null);
+                    setUserNote('');
+                  }}
+                  disabled={isLoading}
+                  className="px-4 py-2 rounded-xl text-stone-500 hover:text-stone-800 text-xs font-medium cursor-pointer"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="button"
+                  onClick={handleIdentify}
+                  disabled={isLoading}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs sm:text-sm font-semibold transition-all disabled:opacity-50 cursor-pointer shadow-xs"
+                >
+                  {isLoading ? (
+                    <>
+                      <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                      <span>Identificando...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span>Identificar Planta</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
           </div>
         ) : (
-          <div className="flex flex-col items-center py-4">
-            <div className="w-16 h-16 rounded-2xl bg-emerald-100/70 text-emerald-800 flex items-center justify-center mb-3 shadow-inner">
-              <UploadCloud className="w-8 h-8 text-emerald-700" />
+          <div className="flex flex-col items-center">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center mb-4">
+              <UploadCloud className="w-6 h-6" />
             </div>
-            <h3 className="text-base font-semibold text-stone-900 mb-1">
-              Arraste e solte a foto da sua planta aqui
-            </h3>
-            <p className="text-xs sm:text-sm text-stone-500 max-w-md mb-4">
-              Suporta JPG, PNG e WEBP. Fotos bem iluminadas e nítidas de folhas ou flores garantem máxima precisão na identificação.
+
+            <p className="text-xs sm:text-sm text-stone-500 mb-6 max-w-xs">
+              Arraste a foto da folha aqui ou escolha uma das opções abaixo:
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-3">
               <button
-                id="btn-select-file"
-                type="button"
-                onClick={() => fileInputRef.current?.click()}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-white text-sm font-medium transition-colors shadow-sm cursor-pointer"
-              >
-                <ImageIcon className="w-4 h-4" />
-                Escolher Arquivo
-              </button>
-              <button
-                id="btn-open-camera"
                 type="button"
                 onClick={() => cameraInputRef.current?.click()}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 text-sm font-medium transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs sm:text-sm font-semibold transition-colors cursor-pointer shadow-xs"
               >
-                <Camera className="w-4 h-4 text-emerald-700" />
+                <Camera className="w-4 h-4" />
                 Tirar Foto
+              </button>
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs sm:text-sm font-medium transition-colors cursor-pointer"
+              >
+                <ImageIcon className="w-4 h-4 text-stone-500" />
+                Escolher Arquivo
               </button>
             </div>
           </div>
         )}
       </div>
 
-      {/* User Note & Analysis Action */}
-      {selectedImage && (
-        <div className="mt-5 space-y-4">
-          <div>
-            <label htmlFor="user-note-input" className="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1.5">
-              Dúvida Específica ou Sintomas Observados (Opcional)
-            </label>
-            <input
-              id="user-note-input"
-              type="text"
-              placeholder="Ex.: 'Pontas das folhas amareladas', 'Fica perto de janela com sol da tarde', 'Estas manchas são fungos?'"
-              value={userNote}
-              onChange={(e) => setUserNote(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm text-stone-800 placeholder:text-stone-400"
-            />
-          </div>
+      {/* Minimalist Sample Chips */}
+      <div className="text-center space-y-3 pt-2">
+        <span className="text-xs text-stone-400 font-medium tracking-wide">
+          Ou explore os cuidados de uma planta conhecida:
+        </span>
 
-          <div className="flex items-center justify-end gap-3 pt-2">
+        <div className="flex flex-wrap items-center justify-center gap-2.5">
+          {SAMPLE_PLANTS.map((sample) => (
             <button
-              id="btn-clear-selection"
+              key={sample.id}
               type="button"
               onClick={() => {
-                setSelectedImage(null);
-                setUserNote('');
+                setError(null);
+                onPlantIdentified(sample);
               }}
-              disabled={isLoading}
-              className="px-4 py-2.5 rounded-xl text-stone-600 hover:text-stone-900 hover:bg-stone-100 text-sm font-medium transition-colors cursor-pointer"
-            >
-              Limpar
-            </button>
-            <button
-              id="btn-analyze-plant"
-              type="button"
-              onClick={handleIdentify}
-              disabled={isLoading}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-medium text-sm shadow-md shadow-emerald-900/20 disabled:opacity-60 disabled:cursor-not-allowed transition-all cursor-pointer"
-            >
-              {isLoading ? (
-                <>
-                  <RefreshCw className="w-4 h-4 animate-spin" />
-                  <span>Identificando Espécime com Inteligência Botânica...</span>
-                </>
-              ) : (
-                <>
-                  <Sparkles className="w-4 h-4" />
-                  <span>Identificar &amp; Gerar Guia de Cultivo</span>
-                </>
-              )}
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Quick Curated Samples for Immediate Testing */}
-      <div className="mt-7 pt-6 border-t border-stone-100">
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-xs font-semibold uppercase tracking-wider text-stone-500">
-            Ou Teste Imediatamente Com Plantas de Exemplo:
-          </span>
-          <span className="text-xs text-stone-400">Clique para abrir o guia</span>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {SAMPLE_PLANTS.map((sample) => (
-            <div
-              key={sample.id}
-              onClick={() => loadSample(sample)}
-              className="group flex items-center gap-3 p-2.5 rounded-xl border border-stone-200 hover:border-emerald-500 hover:bg-emerald-50/40 cursor-pointer transition-all duration-150"
+              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white hover:bg-emerald-50 border border-stone-200 hover:border-emerald-300 text-stone-700 hover:text-emerald-900 text-xs font-medium transition-all shadow-2xs cursor-pointer group"
             >
               <img
                 src={sample.imageUrl}
                 alt={sample.commonName}
-                className="w-12 h-12 rounded-lg object-cover shadow-xs group-hover:scale-105 transition-transform"
+                className="w-5 h-5 rounded-md object-cover"
               />
-              <div className="min-w-0 flex-1">
-                <div className="text-xs font-semibold text-stone-900 truncate group-hover:text-emerald-800">
-                  {sample.commonName}
-                </div>
-                <div className="text-[11px] text-stone-500 italic truncate">
-                  {sample.scientificName}
-                </div>
-              </div>
-              <CheckCircle2 className="w-4 h-4 text-stone-300 group-hover:text-emerald-600 shrink-0" />
-            </div>
+              <span>{sample.commonName}</span>
+              <ArrowRight className="w-3 h-3 text-stone-400 group-hover:text-emerald-600 transition-transform group-hover:translate-x-0.5" />
+            </button>
           ))}
         </div>
       </div>

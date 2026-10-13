@@ -1,98 +1,120 @@
-import { Sprout, MessageSquareQuote, Flower2, Sparkles, BookOpen, Crown } from 'lucide-react';
+import { Sprout, MessageSquareQuote, Flower2, BookOpen, Smartphone } from 'lucide-react';
 
 interface NavbarProps {
   activeTab: 'identify' | 'chat' | 'garden';
   setActiveTab: (tab: 'identify' | 'chat' | 'garden') => void;
   gardenCount: number;
   onOpenSubscriptionModal?: () => void;
+  onResetIdentify?: () => void;
 }
 
-export function Navbar({ activeTab, setActiveTab, gardenCount, onOpenSubscriptionModal }: NavbarProps) {
+export function Navbar({
+  activeTab,
+  setActiveTab,
+  gardenCount,
+  onOpenSubscriptionModal,
+  onResetIdentify,
+}: NavbarProps) {
+  const handleHomeClick = () => {
+    setActiveTab('identify');
+    if (onResetIdentify) {
+      onResetIdentify();
+    }
+  };
+
   return (
-    <header id="app-navbar" className="sticky top-0 z-30 bg-stone-900/95 backdrop-blur-md border-b border-stone-800 text-stone-100 shadow-sm pt-safe">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-18">
-          {/* Brand Logo & Title */}
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => setActiveTab('identify')}>
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center text-white shadow-md shadow-emerald-900/40">
-              <Sprout className="w-6 h-6" />
+    <header id="app-navbar" className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-stone-200/70 text-stone-900 pt-safe transition-colors">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-16">
+          {/* Brand Logo */}
+          <div
+            className="flex items-center gap-2.5 cursor-pointer select-none group"
+            onClick={handleHomeClick}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                handleHomeClick();
+              }
+            }}
+          >
+            <div className="w-8 h-8 rounded-xl bg-emerald-700 flex items-center justify-center text-white shadow-xs group-hover:bg-emerald-800 transition-colors">
+              <Sprout className="w-4 h-4" />
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-semibold text-lg sm:text-xl tracking-tight text-white font-serif-heading">
-                  Brota
-                </span>
-                <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-950 text-emerald-300 border border-emerald-800/80">
-                  <Sparkles className="w-3 h-3 text-emerald-400" />
-                  Jardinagem em Família &amp; IA
-                </span>
-              </div>
-              <p className="text-xs text-stone-400 hidden sm:block">Aprenda e cultive flores, ervas e hortaliças</p>
+            <div className="flex items-baseline gap-2">
+              <span className="font-semibold text-lg tracking-tight font-serif-heading text-stone-900">
+                Brota
+              </span>
+              <span className="text-[11px] text-stone-400 hidden sm:inline">
+                jardinagem em família
+              </span>
             </div>
           </div>
 
-          {/* Nav Tabs & iOS Premium Button */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            <nav className="hidden sm:flex items-center gap-1 sm:gap-2">
+          {/* Nav Tabs & Mobile App Guide Button */}
+          <div className="flex items-center gap-1 sm:gap-2">
+            <nav className="hidden sm:flex items-center gap-1" aria-label="Navegação principal">
               <button
                 id="tab-identify"
-                onClick={() => setActiveTab('identify')}
-                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                type="button"
+                onClick={() => {
+                  setActiveTab('identify');
+                  if (onResetIdentify) onResetIdentify();
+                }}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all cursor-pointer ${
                   activeTab === 'identify'
-                    ? 'bg-emerald-600 text-white shadow-sm shadow-emerald-900/50'
-                    : 'text-stone-300 hover:text-white hover:bg-stone-800'
+                    ? 'bg-stone-900 text-white shadow-2xs'
+                    : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100'
                 }`}
               >
-                <BookOpen className="w-4 h-4" />
-                <span className="hidden md:inline">Identificar &amp; Cuidados</span>
-                <span className="md:hidden">Identificar</span>
+                <BookOpen className="w-3.5 h-3.5" />
+                <span>Identificar</span>
               </button>
 
               <button
                 id="tab-chat"
+                type="button"
                 onClick={() => setActiveTab('chat')}
-                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all cursor-pointer ${
                   activeTab === 'chat'
-                    ? 'bg-emerald-600 text-white shadow-sm shadow-emerald-900/50'
-                    : 'text-stone-300 hover:text-white hover:bg-stone-800'
+                    ? 'bg-stone-900 text-white shadow-2xs'
+                    : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100'
                 }`}
               >
-                <MessageSquareQuote className="w-4 h-4" />
-                <span className="hidden md:inline">Chat Botânico</span>
-                <span className="md:hidden">Chat</span>
+                <MessageSquareQuote className="w-3.5 h-3.5" />
+                <span>Flora</span>
               </button>
 
               <button
                 id="tab-garden"
+                type="button"
                 onClick={() => setActiveTab('garden')}
-                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all cursor-pointer ${
                   activeTab === 'garden'
-                    ? 'bg-emerald-600 text-white shadow-sm shadow-emerald-900/50'
-                    : 'text-stone-300 hover:text-white hover:bg-stone-800'
+                    ? 'bg-stone-900 text-white shadow-2xs'
+                    : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100'
                 }`}
               >
-                <Flower2 className="w-4 h-4" />
-                <span className="hidden md:inline">Meu Jardim</span>
-                <span className="md:hidden">Jardim</span>
+                <Flower2 className="w-3.5 h-3.5" />
+                <span>Meu Jardim</span>
                 {gardenCount > 0 && (
-                  <span className="ml-0.5 px-1.5 py-0.2 rounded-full text-xs font-semibold bg-emerald-400 text-emerald-950">
+                  <span className="ml-0.5 px-1.5 py-0.2 rounded-full text-[10px] font-semibold bg-emerald-100 text-emerald-800">
                     {gardenCount}
                   </span>
                 )}
               </button>
             </nav>
 
-            {/* iOS Store Premium / Assinatura Modal Button */}
+            {/* Mobile App & Story Trigger */}
             {onOpenSubscriptionModal && (
               <button
                 type="button"
                 onClick={onOpenSubscriptionModal}
-                title="Plano Premium / Assinatura App Store"
-                className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-stone-950 transition-all shadow-sm shadow-amber-950/40 cursor-pointer"
+                title="Sobre o Brota e como usar no celular"
+                className="p-2 sm:px-3 sm:py-1.5 rounded-xl text-xs font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-100 transition-colors flex items-center gap-1.5 cursor-pointer ml-1"
               >
-                <Crown className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Assinatura iOS</span>
-                <span className="sm:hidden">Pro</span>
+                <Smartphone className="w-3.5 h-3.5 text-emerald-700" />
+                <span className="hidden sm:inline">No Celular</span>
               </button>
             )}
           </div>
