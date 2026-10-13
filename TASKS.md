@@ -6,6 +6,7 @@ Migrate AI integration to OpenRouter (`OPENROUTER_API_KEY`) across vision plant 
 ## Active Work
 | Branch / Lane | Work | Status | Owner |
 | --- | --- | --- | --- |
+| `antigravity/issue-16-minimal-ui` | Minimalist UI redesign, uncluttering & separate plant guide flow (Issue #16) | In Progress | Antigravity |
 | `main` | Configure OPENROUTER_API_KEY in Vercel environment variables | In Progress | Cesar |
 
 ## Recently Done

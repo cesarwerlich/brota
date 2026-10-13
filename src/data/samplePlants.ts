@@ -2,6 +2,158 @@ import { IdentifiedPlant } from '../types';
 
 export const SAMPLE_PLANTS: IdentifiedPlant[] = [
   {
+    id: 'sample-tomato',
+    identifiedAt: '2026-09-08T10:00:00.000Z',
+    imageUrl: 'https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=1000&q=80',
+    commonName: 'Tomateiro-cereja',
+    scientificName: 'Solanum lycopersicum var. cerasiforme',
+    family: 'Solanaceae',
+    confidence: 'high',
+    confidenceScore: 99,
+    description: 'A estrela das hortas caseiras em família! O tomateiro-cereja produz cachos abundantes de frutinhos doces e suculentos, sendo perfeito para ensinar crianças sobre o ciclo das flores, o calor do sol e a emoção de colher o próprio alimento no pé.',
+    nativeHabitat: 'Regiões andinas da América do Sul (noroeste da América do Sul)',
+    plantType: 'Hortaliça de Fruto / Horta em Família',
+    difficultyLevel: 'Fácil (Iniciante)',
+    healthAssessment: {
+      status: 'Saudável',
+      summary: 'Planta viçosa em plena floração e frutificação inicial. Folhagem com coloração verde profunda e caules fortes.',
+      diagnoses: [
+        {
+          issue: 'Brotos laterais axilares (ladrões)',
+          severity: 'leve',
+          suggestion: 'Retire com os dedos os pequenos brotos que nascem nas "axilas" entre o caule principal e as folhas para concentrar a energia da planta nos cachos de tomate.'
+        }
+      ]
+    },
+    careInstructions: {
+      watering: {
+        frequency: 'A cada 2 a 3 dias (ou diariamente no calor intenso)',
+        summary: 'Mantenha o solo sempre úmido ao toque, sem encharcar.',
+        details: 'Regue diretamente na base do caule, pela manhã, sem molhar as folhas nem as flores. Molhar as folhas favorece o surgimento de fungos como o míldio e a pinta-preta.',
+        signsOfUnderWatering: 'Folhas murchas e caídas durante a manhã, pontas enroladas para dentro e abortamento de flores.',
+        signsOfOverWatering: 'Folhas amareladas na base, solo empapado com cheiro forte e rachaduras na casca dos frutos.'
+      },
+      light: {
+        requirement: 'Sol Pleno (Mínimo 5 a 6 horas diárias de sol direto)',
+        summary: 'Precisa de muita luz direta para produzir flores férteis e frutos doces.',
+        details: 'Posicione no ponto mais ensolarado da varanda ou do quintal. Se ficar na sombra, a planta cresce fina e esticada (estiolamento) e produz pouquíssimos tomates.',
+        directSunTolerance: 'Altíssima (ama sol pleno e dias claros)'
+      },
+      soilAndPotting: {
+        mixType: 'Solo fértil, rico em matéria orgânica (húmus de minhoca ou composto), terra vegetal e boa drenagem com areia ou perlita.',
+        drainageNeeds: 'Indispensável. Em vasos, use recipientes de pelo menos 20 a 30 litros com boa furação e camada de argila expandida no fundo.',
+        repottingSchedule: 'Transplante da sementeira para o vaso definitivo quando a muda atingir cerca de 10 a 15 cm e apresentar 4 a 6 folhas verdadeiras.'
+      },
+      temperatureAndHumidity: {
+        tempRange: '18°C a 28°C',
+        humidityNeeds: 'Moderada (50% a 70%). Ambientes muito abafados exigem boa circulação de ar.',
+        coldTolerance: 'Sensível ao frio severo e geadas; abaixo de 12°C o desenvolvimento desacelera bastante.',
+        humidityTips: 'Mantenha boa ventilação ao redor do tomateiro para que o pólen circule nas flores e o ar seque o orvalho das folhas.'
+      },
+      fertilizing: {
+        schedule: 'A cada 15 a 20 dias durante a floração e colheita',
+        fertilizerType: 'Adubos orgânicos ricos em fósforo, potássio e cálcio (húmus de minhoca, farinha de ossos, cinzas de madeira ou cascas de ovo trituradas).',
+        winterCare: 'Em regiões quentes produz o ano todo; em regiões frias é cultivado como planta anual na primavera e verão.'
+      },
+      pruningAndMaintenance: {
+        tips: [
+          'Instale um tutor (estaca de bambu ou treliça) para amarrar o caule suavemente com barbante conforme ele cresce.',
+          'Pince os brotinhos laterais que nascem na junção das folhas (desbrota) uma vez por semana.',
+          'Corte as folhas mais velhas que encostam no chão para evitar contato com respingos de terra.'
+        ],
+        propagationMethod: 'Por sementes (germinação fácil em 5 a 10 dias) ou por estaquia de brotos laterais enraizados na água.'
+      },
+      toxicity: {
+        toxicToPets: false,
+        petDetails: 'Os tomatinhos maduros são seguros para o consumo humano e inofensivos em pequenas quantidades. As partes verdes da planta (caule e folhas) contêm solanina e devem ser mantidas longe de cães e gatos.',
+        toxicToHumans: false
+      },
+      seasonalCalendar: {
+        springSummer: 'Pico de crescimento, floração e colheita: garanta sol intenso, regas regulares e adubação orgânica.',
+        fallWinter: 'Final da colheita; proteja de noites muito frias ou prepare o canteiro para novo plantio na primavera.'
+      }
+    },
+    funFacts: [
+      'Botanicamente falando, o tomate não é um vegetal nem legume: é uma fruta (uma baga suculenta)!',
+      'O aroma delicioso que fica nas mãos ao encostar no tomateiro vem de minúsculas glândulas nas folhas que produzem óleos protetores naturais.',
+      'As flores do tomateiro são hermafroditas e contam com o vento e as vibrações das abelhas mamangavas para espalhar o pólen e gerar cada frutinho.'
+    ],
+    lastWatered: '2026-09-07'
+  },
+  {
+    id: 'sample-basil',
+    identifiedAt: '2026-09-08T10:15:00.000Z',
+    imageUrl: 'https://images.unsplash.com/photo-1618375569909-3c8616cf7733?auto=format&fit=crop&w=1000&q=80',
+    commonName: 'Manjericão Italiano',
+    scientificName: 'Ocimum basilicum',
+    family: 'Lamiaceae',
+    confidence: 'high',
+    confidenceScore: 98,
+    description: 'Erva aromática clássica de folhas tenras, perfume inconfundível e sabor fresco. Indispensável na cozinha e muito prazerosa de cultivar na janela ou varanda, aproximando toda a família das receitas frescas feitas em casa.',
+    nativeHabitat: 'Regiões tropicais da África Central e Sudeste Asiático',
+    plantType: 'Erva Aromática / Condimento Culinário',
+    difficultyLevel: 'Fácil (Iniciante)',
+    healthAssessment: {
+      status: 'Saudável',
+      summary: 'Touceira compacta, folhas verdes brilhantes e excelente densidade foliar. Aroma intenso e sem sinais de pragas.',
+      diagnoses: []
+    },
+    careInstructions: {
+      watering: {
+        frequency: 'A cada 1 a 2 dias (solo sempre levemente úmido)',
+        summary: 'Regue assim que a superfície do substrato começar a secar.',
+        details: 'O manjericão avisa quando tem sede murchando rapidamente, mas se recupera com vigor poucas horas após a rega. Evite pratinho com água parada.',
+        signsOfUnderWatering: 'Folhas murchas, macias e caídas para os lados do vaso.',
+        signsOfOverWatering: 'Folhas amareladas, caules escurecidos na base e terra com aspecto empastado.'
+      },
+      light: {
+        requirement: 'Sol Pleno ou Meia-Sombra Intensa (Mínimo 4 a 5 horas de sol direto)',
+        summary: 'Quanto mais luz solar receber, mais concentrados e saborosos serão seus óleos aromáticos.',
+        details: 'Ideal em janelas voltadas para o norte ou leste, ou em jardineiras bem iluminadas.',
+        directSunTolerance: 'Alta (desenvolve-se com máximo vigor sob sol direto)'
+      },
+      soilAndPotting: {
+        mixType: 'Substrato leve, fofo e rico em composto orgânico com boa porcentagem de perlita ou casca de arroz carbonizada.',
+        drainageNeeds: 'Excelente. A terra deve reter umidade sem nunca compactar.',
+        repottingSchedule: 'Pode ser plantado em jardineiras ou vasos de 3 a 5 litros por muda, com renovação anual do substrato.'
+      },
+      temperatureAndHumidity: {
+        tempRange: '20°C a 30°C',
+        humidityNeeds: 'Moderada (40% a 65%).',
+        coldTolerance: 'Muito sensível a frentes frias e geadas; abaixo de 10°C perde as folhas.',
+        humidityTips: 'Prefere ar livre e ventilado. Em cozinhas fechadas, mantenha próximo a janelas abertas.'
+      },
+      fertilizing: {
+        schedule: 'Mensalmente durante as estações quentes',
+        fertilizerType: 'Biofertilizante orgânico, chá de húmus ou torta de mamona/farinha de ossos em doses suaves.',
+        winterCare: 'Reduza as regas no inverno e proteja o vaso do vento gelado.'
+      },
+      pruningAndMaintenance: {
+        tips: [
+          'Faça a poda de beliscão (poda apical): corte a pontinha superior dos galhos para estimular o nascimento de dois novos galhos laterais.',
+          'Pode as inflorescências (pendões de flor) assim que surgirem para que as folhas continuem doces, tenras e aromáticas.',
+          'Colha as folhas sempre pela manhã para aproveitar a maior concentração de óleos essenciais.'
+        ],
+        propagationMethod: 'Estaquia de galho na água: coloque um galho de 10 cm em um copo com água e em cerca de 7 dias surgirão raízes prontas para plantar na terra.'
+      },
+      toxicity: {
+        toxicToPets: false,
+        petDetails: '100% atóxico e seguro para cães, gatos e seres humanos. Usado comumente na culinária e em chás.',
+        toxicToHumans: false
+      },
+      seasonalCalendar: {
+        springSummer: 'Crescimento explosivo: colha com frequência, pode flores e mantenha regas diárias.',
+        fallWinter: 'Crescimento mais lento: mantenha no local mais quente e iluminado da casa.'
+      }
+    },
+    funFacts: [
+      'O nome botânico "Ocimum" vem do grego antigo e significa "perfumado", enquanto "basilicum" significa "real" ou "digno de reis".',
+      'Plantar manjericão perto de tomateiros na horta é um dos consórcios mais famosos da permacultura: ele ajuda a afastar moscas-brancas e realça o sabor dos tomates!',
+      'Fazer mudinhas de manjericão em copos d\'água é uma das atividades mais encantadoras para fazer com crianças, pois as raízes brancas crescem visivelmente a cada dois dias.'
+    ],
+    lastWatered: '2026-09-08'
+  },
+  {
     id: 'sample-monstera',
     identifiedAt: '2026-09-08T10:00:00.000Z',
     imageUrl: 'https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=1000&q=80',
@@ -12,11 +164,11 @@ export const SAMPLE_PLANTS: IdentifiedPlant[] = [
     confidenceScore: 98,
     description: 'Uma imponente planta tropical nativa das florestas úmidas da América Central, famosa por suas folhas verdes brilhantes em formato de coração que desenvolvem fenestrações (recortes naturais) conforme amadurece.',
     nativeHabitat: 'Florestas tropicais do sul do México até o Panamá',
-    plantType: 'Folhagem de Interior / Trepadeira Epífita',
+    plantType: 'Folhagem Ornamental / Trepadeira de Interior',
     difficultyLevel: 'Fácil (Iniciante)',
     healthAssessment: {
       status: 'Saudável',
-      summary: 'Folhagem viçosa em verde esmeralda com nova folha jovem desabrochando. Sem sinais de pragas ou clorose.',
+      summary: 'Folhagem viçosa em verde esmeralda com nova folha jovem desabrochando. Sem sinais de pragas ou carências nutricionais.',
       diagnoses: [
         {
           issue: 'Desenvolvimento natural de raízes aéreas',
@@ -65,7 +217,7 @@ export const SAMPLE_PLANTS: IdentifiedPlant[] = [
       },
       toxicity: {
         toxicToPets: true,
-        petDetails: 'Contém cristais de oxalato de cálcio insolúveis que provocam irritação na mucosa oral, salivação intensa e desconforto digestivo em cães e gatos.',
+        petDetails: 'Contém cristais de oxalato de cálcio insolúveis que provocam irritação na mucosa oral, salivação intensa e desconforto digestivo em cães e gatos se mastigada.',
         toxicToHumans: true
       },
       seasonalCalendar: {
@@ -79,157 +231,5 @@ export const SAMPLE_PLANTS: IdentifiedPlant[] = [
       'Suas raízes aéreas são tão fortes que povos indígenas tradicionalmente as usavam para tecer cestos e amarrações.'
     ],
     lastWatered: '2026-09-06'
-  },
-  {
-    id: 'sample-snake-plant',
-    identifiedAt: '2026-09-08T10:15:00.000Z',
-    imageUrl: 'https://images.unsplash.com/photo-1593482892290-f54927ae1bf6?auto=format&fit=crop&w=1000&q=80',
-    commonName: 'Espada-de-São-Jorge / Sanseviéria',
-    scientificName: 'Dracaena trifasciata (Sansevieria)',
-    family: 'Asparagaceae',
-    confidence: 'high',
-    confidenceScore: 99,
-    description: 'Uma suculenta excepcionalmente resistente com folhas eretas em formato de espada, exibindo belas margens marmorizadas em tons de verde e dourado. Famosa pela extrema resiliência e capacidade de purificação do ar.',
-    nativeHabitat: 'África Ocidental tropical, da Nigéria até o Congo',
-    plantType: 'Suculenta Tolerante à Seca / Folhagem Arquitetônica',
-    difficultyLevel: 'Fácil (Iniciante)',
-    healthAssessment: {
-      status: 'Saudável',
-      summary: 'Lanças eretas e rígidas com bordas douradas nítidas. Nível hídrico e vigor celular ideais.',
-      diagnoses: []
-    },
-    careInstructions: {
-      watering: {
-        frequency: 'A cada 2 a 4 semanas',
-        summary: 'Deixe o substrato secar por completo antes de regar. Na dúvida, espere mais alguns dias.',
-        details: 'Regue profundamente até drenar e esvazie qualquer excesso de água. Durante o inverno, regar uma vez ao mês costuma ser mais que suficiente.',
-        signsOfUnderWatering: 'Leve enrugamento ao longo das folhas verticais e curvatura para dentro.',
-        signsOfOverWatering: 'Folhas amolecidas, translúcidas ou tombando na base do solo com cheiro de podridão.'
-      },
-      light: {
-        requirement: 'De Pouca a Muita Luz Indireta (Extremamente Adaptável)',
-        summary: 'Tolera cantos sombreados de interiores e também janelas bastante iluminadas.',
-        details: 'Cresce com maior rapidez sob boa claridade, mas é uma das raras plantas capazes de sobreviver bem em ambientes com apenas iluminação artificial.',
-        directSunTolerance: 'Alta (tolera sol pleno se adaptada gradativamente)'
-      },
-      soilAndPotting: {
-        mixType: 'Substrato bem drenante para cactos e suculentas com areia grossa, perlita e terra vegetal.',
-        drainageNeeds: 'Essencial. Vasos pesados de cerâmica ou barro evitam o tombamento das folhas pesadas e ajudam a evaporar umidade excessiva.',
-        repottingSchedule: 'Apenas quando os fortes rizomas deformarem ou quebrarem o vaso (a cada 3 a 4 anos).'
-      },
-      temperatureAndHumidity: {
-        tempRange: '18°C a 35°C',
-        humidityNeeds: 'Baixa a média (30% a 50%). Altamente tolerante ao ar seco.',
-        coldTolerance: 'Sensível a geadas severas; manter preferencialmente acima de 12°C.',
-        humidityTips: 'Não borrife água nas folhas da sanseviéria. Água acumulada no miolo central pode causar podridão da roseta.'
-      },
-      fertilizing: {
-        schedule: 'Duas vezes ao ano (início da primavera e meados do verão)',
-        fertilizerType: 'Fertilizante para cactos e suculentas em concentração bem suave.',
-        winterCare: 'Não fertilize durante o período de dormência no inverno.'
-      },
-      pruningAndMaintenance: {
-        tips: [
-          'Limpe a poeira das folhas verticais com pano seco macio.',
-          'Corte folhas velhas ou danificadas bem rente à base do solo.',
-          'Nunca corte ou quebre a pontinha apical da folha, pois isso paralisa o crescimento vertical daquela haste.'
-        ],
-        propagationMethod: 'Divisão de touceiras e rizomas durante o replantio, ou estaquia de pedaços de folha na terra úmida ou água.'
-      },
-      toxicity: {
-        toxicToPets: true,
-        petDetails: 'Contém saponinas que podem provocar salivação e desconforto gastrointestinal se ingeridas por cães ou gatos.',
-        toxicToHumans: true
-      },
-      seasonalCalendar: {
-        springSummer: 'Período vegetativo ativo: regue a cada 2-3 semanas e mantenha em local bem iluminado.',
-        fallWinter: 'Dormência: reduza a rega para no máximo uma vez ao mês e afaste de correntes de ar gelado.'
-      }
-    },
-    funFacts: [
-      'Foi destaque nos estudos de ar limpo da NASA por sua eficiência em filtrar poluentes voláteis como benzeno, xileno e formaldeído.',
-      'Ao contrário da maioria das plantas, realiza fotossíntese CAM (Metabolismo Ácido das Crassuláceas), liberando oxigênio durante a noite.',
-      'Suas fibras vegetais de alta resistência eram historicamente utilizadas na confecção de cordas de arco na África.'
-    ],
-    lastWatered: '2026-08-28'
-  },
-  {
-    id: 'sample-fiddle-leaf',
-    identifiedAt: '2026-09-08T09:30:00.000Z',
-    imageUrl: 'https://images.unsplash.com/photo-1545241047-6083a3684587?auto=format&fit=crop&w=1000&q=80',
-    commonName: 'Figueira-lira (Ficus lyrata)',
-    scientificName: 'Ficus lyrata',
-    family: 'Moraceae',
-    confidence: 'high',
-    confidenceScore: 96,
-    description: 'Uma árvore ornamental clássica para interiores, com folhas imponentes em formato de violino, nervuras esculpidas e aspecto couro acetinado.',
-    nativeHabitat: 'Florestas tropicais de planície da África Ocidental',
-    plantType: 'Árvore de Interior / Planta de Destaque',
-    difficultyLevel: 'Moderado',
-    healthAssessment: {
-      status: 'Requer Atenção',
-      summary: 'Edema leve (pontinhos avermelhados nas folhas jovens recém-nascidas) decorrente de oscilações na rotina de rega.',
-      diagnoses: [
-        {
-          issue: 'Oscilação hídrica celular / Edema',
-          severity: 'leve',
-          suggestion: 'Mantenha um cronograma de regas constante para que as células das raízes não absorvam água em excesso após períodos de seca.'
-        }
-      ]
-    },
-    careInstructions: {
-      watering: {
-        frequency: 'A cada 7 a 10 dias',
-        summary: 'Regue quando os primeiros 50% do substrato estiverem secos ao toque.',
-        details: 'Regue de forma uniforme com água em temperatura ambiente até escorrer. Evite água com excesso de cloro deixando-a descansar 24 horas antes de aplicar.',
-        signsOfUnderWatering: 'Folhas inferiores caídas e pontas secas e crocantes no centro do limbo foliar.',
-        signsOfOverWatering: 'Bordas das folhas com manchas escuras, queda repentina de folhas verdes e caule amolecido.'
-      },
-      light: {
-        requirement: 'Claridade Intensa e Filtrada',
-        summary: 'Necessita de várias horas diárias de luz brilhante indireta ou sol matinal ameno.',
-        details: 'Coloque bem perto de janelas grandes e sem obstrução. Gire o vaso 90 graus semanalmente para que a copa cresça ereta e uniforme.',
-        directSunTolerance: 'Moderada (sol da manhã é excelente; sol tórrido do meio-dia deve ser filtrado por cortinas leves)'
-      },
-      soilAndPotting: {
-        mixType: 'Substrato fértil e bem aerado com fibra de coco, perlita e casca de pinus.',
-        drainageNeeds: 'Drenagem excelente é indispensável. As raízes do ficus são muito suscetíveis a fungos de podridão radicular.',
-        repottingSchedule: 'A cada 2 anos na primavera para um vaso 5 cm maior em diâmetro.'
-      },
-      temperatureAndHumidity: {
-        tempRange: '18°C a 28°C',
-        humidityNeeds: '50% a 65% de umidade relativa do ar.',
-        coldTolerance: 'Muito sensível a rajadas frias e mudanças bruscas de lugar.',
-        humidityTips: 'Borrife a copa em dias secos ou use umidificador de ar no cômodo durante o inverno.'
-      },
-      fertilizing: {
-        schedule: 'A cada 15 a 30 dias na primavera e verão',
-        fertilizerType: 'Adubo específico para folhagens rico em nitrogênio ou NPK 10-10-10 diluído.',
-        winterCare: 'Interrompa a fertilização no outono e inverno.'
-      },
-      pruningAndMaintenance: {
-        tips: [
-          'Gire o vaso um quarto de volta por semana para manter o tronco reto e a copa simétrica.',
-          'Limpe as folhas suavemente com pano úmido ou óleo de neem para prevenir ácaros e devolver o brilho.',
-          'Pode a gema apical na primavera se desejar estimular a ramificação lateral.'
-        ],
-        propagationMethod: 'Estacas de galho com folhas na água ou alporquia em ramos semilenhosos.'
-      },
-      toxicity: {
-        toxicToPets: true,
-        petDetails: 'A seiva leitosa contém látex e compostos que provocam dermatite de contato e vômitos se ingerida por animais domésticos.',
-        toxicToHumans: true
-      },
-      seasonalCalendar: {
-        springSummer: 'Pico de crescimento: gire o vaso, adube quinzenalmente e inspecione o verso das folhas.',
-        fallWinter: 'Espace mais a rega, suspenda o adubo e garanta o máximo de luminosidade diurna.'
-      }
-    },
-    funFacts: [
-      'Nas florestas tropicais da África Ocidental, o Ficus lyrata muitas vezes começa sua vida como uma epífita na copa de outra árvore antes de estender raízes até o solo!',
-      'Os ficus adoram estabilidade: mudá-los constantemente de lugar na casa frequentemente causa estresse e queda de folhas.',
-      'A textura grossa das folhas é uma adaptação natural para suportar fortes ventos tropicais sem desidratar.'
-    ],
-    lastWatered: '2026-09-02'
   }
 ];
