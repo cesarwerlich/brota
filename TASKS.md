@@ -6,10 +6,11 @@ Migrate AI integration to OpenRouter (`OPENROUTER_API_KEY`) across vision plant 
 ## Active Work
 | Branch / Lane | Work | Status | Owner |
 | --- | --- | --- | --- |
-| `antigravity/issue-16-minimal-ui` | Minimalist UI redesign, uncluttering & separate plant guide flow (Issue #16) | In Progress | Antigravity |
-| `main` | Configure OPENROUTER_API_KEY in Vercel environment variables | In Progress | Cesar |
+| `main` | Test plant photo identification and tomato tracker with Cesar & goddaughter | In Progress | Cesar |
 
 ## Recently Done
+- [x] Minimalist UI redesign, uncluttering & separate plant guide flow: merged PR [#17](https://github.com/cesarwerlich/brota/pull/17) and closed Issue [#16](https://github.com/cesarwerlich/brota/issues/16).
+- [x] Verified live production deployment on Vercel (`https://brota-cesarwerlichs-projects.vercel.app/`).
 - [x] Adopted coding-agent harness and workflow practices: merged PR [#15](https://github.com/cesarwerlich/brota/pull/15) and closed Issue [#14](https://github.com/cesarwerlich/brota/issues/14).
 - [x] Implemented zero-dependency OpenRouter client in `api/index.ts` using native `fetch` with vision, JSON object format, and Markdown-fence extraction.
 - [x] Refactored `api/index.ts` endpoints (`/identify-plant`, `/chat`, `/quick-tips`, `/health`) to OpenRouter.
