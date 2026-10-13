@@ -82,3 +82,25 @@ export interface ChatMessage {
 }
 
 export type TaskMode = 'complex' | 'general' | 'fast';
+
+export type PlantCategory = 'horta' | 'ervas' | 'flores' | 'folhagens';
+
+export interface CatalogPlant {
+  id: string;
+  commonName: string;
+  scientificName: string;
+  family: string;
+  category: PlantCategory;
+  categoryLabel: string;
+  imageUrl: string;
+  description: string;
+  nativeHabitat: string;
+  difficultyLevel: 'Fácil (Iniciante)' | 'Moderado' | 'Avançado / Exigente' | string;
+  lightRequirement: string;
+  wateringFrequency: string;
+  growthTime: string;
+  kidTip: string;
+  careInstructions: CareInstructions;
+  funFacts: string[];
+  healthAssessment?: PlantHealthAssessment;
+}
