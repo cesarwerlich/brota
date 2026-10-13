@@ -232,11 +232,17 @@ export default function App() {
         onClose={() => setIsIosModalOpen(false)}
       />
 
-      {/* Discreet Footer */}
-      <footer className="py-6 border-t border-stone-200/60 text-center text-xs text-stone-400 hidden sm:block">
+      {/* Minimal Footer */}
+      <footer className="py-6 border-t border-stone-200/60 text-xs text-stone-400 hidden sm:block">
         <div className="max-w-5xl mx-auto px-4 flex items-center justify-between">
-          <span>Brota • Jardinagem e Aprendizado em Família</span>
-          <span>Tomates, Ervas &amp; Flores</span>
+          <span>Brota • Jardinagem e aprendizado em família</span>
+          <button
+            type="button"
+            onClick={() => setIsIosModalOpen(true)}
+            className="hover:text-stone-600 transition-colors cursor-pointer"
+          >
+            Sobre o projeto
+          </button>
         </div>
       </footer>
 
