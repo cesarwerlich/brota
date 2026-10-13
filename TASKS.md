@@ -15,7 +15,9 @@ Migrate AI integration to OpenRouter (`OPENROUTER_API_KEY`) across vision plant 
 - [x] Verified live OpenRouter `/api/quick-tips` and `/api/chat` calls against OpenRouter API.
 - [x] Updated `.env.example`, `CONTEXT.md`, `docs/operations.md`, `DECISIONS.md` (ADR-0005).
 - [x] Merged PR [#11](https://github.com/cesarwerlich/brota/pull/11) and closed Issue [#10](https://github.com/cesarwerlich/brota/issues/10).
+- [x] Resolved Vercel serverless function ESM invocation error: merged PR [#12](https://github.com/cesarwerlich/brota/pull/12) and closed Issue [#13](https://github.com/cesarwerlich/brota/issues/13).
+- [x] Verified live production health endpoint returns HTTP 200 OK (`https://brota-cesarwerlichs-projects.vercel.app/api/health`).
 
 ## Next Actions
-1. Add `OPENROUTER_API_KEY` to Vercel project environment variables (Dashboard → Settings → Environment Variables).
-2. Test plant identification on production with a tomato/leaf photo.
+1. Test plant photo identification on production with Cesar & goddaughter.
+2. Develop tomato growth tracker (seedling → flower → fruit ripening).
