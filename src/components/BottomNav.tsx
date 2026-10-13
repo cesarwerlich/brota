@@ -1,8 +1,8 @@
-import { BookOpen, MessageSquareQuote, Flower2 } from 'lucide-react';
+import { Camera, BookOpen, MessageSquareQuote, Flower2 } from 'lucide-react';
 
 interface BottomNavProps {
-  activeTab: 'identify' | 'chat' | 'garden';
-  setActiveTab: (tab: 'identify' | 'chat' | 'garden') => void;
+  activeTab: 'identify' | 'catalog' | 'chat' | 'garden';
+  setActiveTab: (tab: 'identify' | 'catalog' | 'chat' | 'garden') => void;
   gardenCount: number;
 }
 
@@ -18,35 +18,49 @@ export function BottomNav({ activeTab, setActiveTab, gardenCount }: BottomNavPro
         <button
           type="button"
           onClick={() => setActiveTab('identify')}
-          className={`flex flex-col items-center justify-center flex-1 py-1 px-2 rounded-xl transition-all cursor-pointer ${
+          className={`flex flex-col items-center justify-center flex-1 py-1 px-1 rounded-xl transition-all cursor-pointer ${
             activeTab === 'identify'
               ? 'text-emerald-800 font-semibold'
               : 'text-stone-400 hover:text-stone-700'
           }`}
         >
-          <BookOpen className="w-4 h-4 mb-0.5" />
+          <Camera className="w-4 h-4 mb-0.5" />
           <span className="text-[10px] tracking-tight">Identificar</span>
         </button>
 
-        {/* Chat Tab */}
+        {/* Catálogo Tab */}
+        <button
+          type="button"
+          onClick={() => setActiveTab('catalog')}
+          className={`flex flex-col items-center justify-center flex-1 py-1 px-1 rounded-xl transition-all cursor-pointer ${
+            activeTab === 'catalog'
+              ? 'text-emerald-800 font-semibold'
+              : 'text-stone-400 hover:text-stone-700'
+          }`}
+        >
+          <BookOpen className="w-4 h-4 mb-0.5" />
+          <span className="text-[10px] tracking-tight">Catálogo</span>
+        </button>
+
+        {/* Flora IA Tab */}
         <button
           type="button"
           onClick={() => setActiveTab('chat')}
-          className={`flex flex-col items-center justify-center flex-1 py-1 px-2 rounded-xl transition-all cursor-pointer ${
+          className={`flex flex-col items-center justify-center flex-1 py-1 px-1 rounded-xl transition-all cursor-pointer ${
             activeTab === 'chat'
               ? 'text-emerald-800 font-semibold'
               : 'text-stone-400 hover:text-stone-700'
           }`}
         >
           <MessageSquareQuote className="w-4 h-4 mb-0.5" />
-          <span className="text-[10px] tracking-tight">Flora</span>
+          <span className="text-[10px] tracking-tight">Flora IA</span>
         </button>
 
         {/* Jardim Tab */}
         <button
           type="button"
           onClick={() => setActiveTab('garden')}
-          className={`flex flex-col items-center justify-center flex-1 py-1 px-2 rounded-xl transition-all cursor-pointer relative ${
+          className={`flex flex-col items-center justify-center flex-1 py-1 px-1 rounded-xl transition-all cursor-pointer relative ${
             activeTab === 'garden'
               ? 'text-emerald-800 font-semibold'
               : 'text-stone-400 hover:text-stone-700'

@@ -6,6 +6,7 @@ Migrate AI integration to OpenRouter (`OPENROUTER_API_KEY`) across vision plant 
 ## Active Work
 | Branch / Lane | Work | Status | Owner |
 | --- | --- | --- | --- |
+| `antigravity/issue-18-plant-catalog-kb` | Botanical catalog KB, botanical favicon & navigation refinements (Issue #18) | In Progress | Antigravity |
 | `main` | Test plant photo identification and tomato tracker with Cesar & goddaughter | In Progress | Cesar |
 
 ## Recently Done

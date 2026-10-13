@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { PlantUploader } from './components/PlantUploader';
 import { PlantCareView } from './components/PlantCareView';
+import { PlantCatalog } from './components/PlantCatalog';
 import { GardeningChatbot } from './components/GardeningChatbot';
 import { MyGarden } from './components/MyGarden';
 import { IosSubscriptionModal } from './components/IosSubscriptionModal';
@@ -16,7 +17,7 @@ import { SAMPLE_PLANTS } from './data/samplePlants';
 import { CheckCircle } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'identify' | 'chat' | 'garden'>('identify');
+  const [activeTab, setActiveTab] = useState<'identify' | 'catalog' | 'chat' | 'garden'>('identify');
   // Starts null on initial entry for a super-clean, uncluttered first impression
   const [currentPlant, setCurrentPlant] = useState<IdentifiedPlant | null>(null);
   const [activeChatPlant, setActiveChatPlant] = useState<IdentifiedPlant | null>(SAMPLE_PLANTS[0]);
@@ -25,6 +26,8 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isIosModalOpen, setIsIosModalOpen] = useState<boolean>(false);
+  const [modalInitialTab, setModalInitialTab] = useState<'install' | 'about'>('install');
+  const [viewSource, setViewSource] = useState<'upload' | 'catalog'>('upload');
 
   // Persistent garden collection
   const [garden, setGarden] = useState<IdentifiedPlant[]>(() => {
@@ -87,9 +90,17 @@ export default function App() {
   };
 
   const handlePlantIdentified = (plant: IdentifiedPlant) => {
+    setViewSource('upload');
     setCurrentPlant(plant);
     setActiveChatPlant(plant);
     showToast(`"${plant.commonName}" carregada!`);
+  };
+
+  const handleSelectFromCatalog = (plant: IdentifiedPlant) => {
+    setViewSource('catalog');
+    setCurrentPlant(plant);
+    setActiveChatPlant(plant);
+    setActiveTab('identify');
   };
 
   const handleSaveToGarden = (plant: IdentifiedPlant) => {
@@ -138,6 +149,7 @@ export default function App() {
   };
 
   const handleSelectFromGarden = (plant: IdentifiedPlant) => {
+    setViewSource('upload');
     setCurrentPlant(plant);
     setActiveChatPlant(plant);
     setActiveTab('identify');
@@ -155,7 +167,6 @@ export default function App() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         gardenCount={garden.length}
-        onOpenSubscriptionModal={() => setIsIosModalOpen(true)}
         onResetIdentify={() => setCurrentPlant(null)}
       />
 
@@ -181,7 +192,15 @@ export default function App() {
                   (p) => p.id === currentPlant.id || p.scientificName === currentPlant.scientificName
                 )}
                 onWaterPlant={handleWaterPlant}
-                onBackToUpload={() => setCurrentPlant(null)}
+                onBackToUpload={() => {
+                  if (viewSource === 'catalog') {
+                    setCurrentPlant(null);
+                    setActiveTab('catalog');
+                  } else {
+                    setCurrentPlant(null);
+                  }
+                }}
+                backLabel={viewSource === 'catalog' ? 'Voltar para o catálogo' : 'Identificar outra planta'}
               />
             ) : (
               <PlantUploader
@@ -195,7 +214,20 @@ export default function App() {
           </div>
         )}
 
-        {/* Tab 2: Flora Chat */}
+        {/* Tab 2: Plant Catalog */}
+        {activeTab === 'catalog' && (
+          <PlantCatalog
+            onSelectPlant={handleSelectFromCatalog}
+            onAddToGarden={handleSaveToGarden}
+            isPlantInGarden={(id, scientificName) =>
+              garden.some(
+                (p) => p.id === id || p.scientificName === scientificName
+              )
+            }
+          />
+        )}
+
+        {/* Tab 3: Flora IA Chat */}
         {activeTab === 'chat' && (
           <div className="max-w-3xl mx-auto">
             <GardeningChatbot
@@ -209,7 +241,7 @@ export default function App() {
           </div>
         )}
 
-        {/* Tab 3: My Garden */}
+        {/* Tab 4: My Garden */}
         {activeTab === 'garden' && (
           <MyGarden
             garden={garden}
@@ -230,19 +262,36 @@ export default function App() {
       <IosSubscriptionModal
         isOpen={isIosModalOpen}
         onClose={() => setIsIosModalOpen(false)}
+        initialTab={modalInitialTab}
       />
 
       {/* Minimal Footer */}
       <footer className="py-6 border-t border-stone-200/60 text-xs text-stone-400 hidden sm:block">
         <div className="max-w-5xl mx-auto px-4 flex items-center justify-between">
           <span>Brota • Jardinagem e aprendizado em família</span>
-          <button
-            type="button"
-            onClick={() => setIsIosModalOpen(true)}
-            className="hover:text-stone-600 transition-colors cursor-pointer"
-          >
-            Sobre o projeto
-          </button>
+          <div className="flex items-center gap-4">
+            <button
+              type="button"
+              onClick={() => {
+                setModalInitialTab('install');
+                setIsIosModalOpen(true);
+              }}
+              className="hover:text-stone-600 transition-colors cursor-pointer"
+            >
+              No celular (App)
+            </button>
+            <span className="text-stone-300">•</span>
+            <button
+              type="button"
+              onClick={() => {
+                setModalInitialTab('about');
+                setIsIosModalOpen(true);
+              }}
+              className="hover:text-stone-600 transition-colors cursor-pointer"
+            >
+              Sobre o projeto
+            </button>
+          </div>
         </div>
       </footer>
 

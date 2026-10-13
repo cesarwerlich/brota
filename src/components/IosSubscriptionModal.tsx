@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   X,
   Smartphone,
@@ -16,10 +16,17 @@ import {
 interface IosSubscriptionModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialTab?: 'install' | 'about';
 }
 
-export function IosSubscriptionModal({ isOpen, onClose }: IosSubscriptionModalProps) {
-  const [activeTab, setActiveTab] = useState<'install' | 'about'>('install');
+export function IosSubscriptionModal({ isOpen, onClose, initialTab = 'install' }: IosSubscriptionModalProps) {
+  const [activeTab, setActiveTab] = useState<'install' | 'about'>(initialTab);
+
+  useEffect(() => {
+    if (isOpen && initialTab) {
+      setActiveTab(initialTab);
+    }
+  }, [isOpen, initialTab]);
 
   if (!isOpen) return null;
 

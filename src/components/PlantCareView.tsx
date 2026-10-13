@@ -26,6 +26,7 @@ interface PlantCareViewProps {
   isSavedInGarden: boolean;
   onWaterPlant: (plantId: string) => void;
   onBackToUpload?: () => void;
+  backLabel?: string;
 }
 
 export function PlantCareView({
@@ -35,6 +36,7 @@ export function PlantCareView({
   isSavedInGarden,
   onWaterPlant,
   onBackToUpload,
+  backLabel,
 }: PlantCareViewProps) {
   const [showAllDetails, setShowAllDetails] = useState(false);
   const { careInstructions, healthAssessment } = plant;
@@ -54,7 +56,7 @@ export function PlantCareView({
             className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-stone-600 hover:text-stone-900 transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>Identificar outra planta</span>
+            <span>{backLabel || (plant.id.startsWith('kb-') ? 'Voltar para o catálogo' : 'Identificar outra planta')}</span>
           </button>
 
           <span className="text-xs text-stone-400">
