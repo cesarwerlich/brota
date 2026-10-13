@@ -1,6 +1,7 @@
 # AGENTS.md
 
-Instructions for AI coding agents working in **Brota**. This is the canonical contract. Tool-specific files (`CLAUDE.md`, `ANTIGRAVITY.md`) are thin pointers back here.
+Instructions for AI coding agents working in **Brota**. This is the canonical contract.
+Native agent tools (Codex, Antigravity) load this file directly. Tools that look for tool-specific files (such as Claude Code via `CLAUDE.md`) import `@AGENTS.md`.
 
 ---
 
@@ -55,7 +56,7 @@ Follow standard Git & GitHub flow:
 ## 5. Security & Credentials
 
 - Never commit `.env`, API keys, private tokens, or secrets.
-- `GEMINI_API_KEY` must always be read from environment variables (`process.env.GEMINI_API_KEY`).
+- `OPENROUTER_API_KEY` must always be read from environment variables (`process.env.OPENROUTER_API_KEY`).
 - Treat external inputs and photo uploads as untrusted data. Validate base64 strings and file sizes.
 
 ---

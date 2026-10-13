@@ -7,10 +7,11 @@ Migrate AI integration to OpenRouter (`OPENROUTER_API_KEY`) across vision plant 
 | Branch / Lane | Work | Status | Owner |
 | --- | --- | --- | --- |
 | `main` | Configure OPENROUTER_API_KEY in Vercel environment variables | In Progress | Cesar |
+| `feat/adopt-scaffold-harness-practices` | Adopt coding-agent harness & workflow practices (Issue #14) | In Progress | Lead Harness Engineer |
 
 ## Recently Done
-- [x] Implemented zero-dependency OpenRouter client (`api/openrouter.ts`) using native `fetch` with vision, JSON object format, and Markdown-fence extraction.
-- [x] Refactored `api/app.ts` endpoints (`/identify-plant`, `/chat`, `/quick-tips`, `/health`) to OpenRouter.
+- [x] Implemented zero-dependency OpenRouter client in `api/index.ts` using native `fetch` with vision, JSON object format, and Markdown-fence extraction.
+- [x] Refactored `api/index.ts` endpoints (`/identify-plant`, `/chat`, `/quick-tips`, `/health`) to OpenRouter.
 - [x] Removed `@google/genai` dependency and cleaned up duplicate `vite` in `package.json`.
 - [x] Verified live OpenRouter `/api/quick-tips` and `/api/chat` calls against OpenRouter API.
 - [x] Updated `.env.example`, `CONTEXT.md`, `docs/operations.md`, `DECISIONS.md` (ADR-0005).

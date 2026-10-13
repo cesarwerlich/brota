@@ -9,7 +9,8 @@ Closes #<!-- issue number -->
 - 
 
 ## Verification Checklist
-- [ ] Ran `./scripts/check.sh` locally (linting and production build pass)
+- [ ] Ran `./scripts/check.sh` locally (doc paths, unit tests, linting, and production build pass)
 - [ ] Preserves existing functionality and data
 - [ ] Follows child & family safety guidelines (no personal info or credentials exposed)
 - [ ] UI branding matches **Brota**
+- [ ] Independent review requested (do not merge your own PR)
