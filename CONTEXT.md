@@ -28,9 +28,9 @@ Brota is built by Cesar and his goddaughter to learn and practice gardening toge
   - Express 4 (`server.ts`), integrated with Vite dev middleware in development and static file serving in production.
   - Bundled for production using `esbuild` to `dist/server.cjs`.
 - **AI Services**:
-  - Google GenAI SDK (`@google/genai`)
-  - `gemini-3.1-pro-preview` for high-accuracy botanical identification, plant family detection, and pathology assessment.
-  - `gemini-3.5-flash` / `gemini-3.1-flash-lite` for interactive gardening chatbot and fast practical cultivation tips.
+  - OpenRouter API (`OPENROUTER_API_KEY`) via standard HTTPS completions endpoint.
+  - Multi-modal vision model (e.g. `google/gemini-2.5-flash`) for leaf and plant identification, taxonomy, and pathology assessment.
+  - Conversational chatbot ("Flora") and instant practical cultivation tips powered by OpenRouter models.
 - **Client Storage**:
   - `localStorage` keys: `flora_garden` (saved plants), `flora_chat` (chat message history).
 

@@ -45,7 +45,9 @@ Starts Express on `0.0.0.0:$PORT` serving the bundled frontend and API endpoints
 
 | Variable | Required | Description | Default |
 | --- | --- | --- | --- |
-| `GEMINI_API_KEY` | **Yes** | Google Gemini API key for plant identification and botany chat | None |
+| `OPENROUTER_API_KEY` | **Yes** | OpenRouter API key for vision, chat, and botanical tips | None |
+| `OPENROUTER_MODEL_VISION` | No | Vision model for plant identification | `google/gemini-2.5-flash` |
+| `OPENROUTER_MODEL_CHAT` | No | Chatbot model for conversational assistant Flora | `google/gemini-2.5-flash` |
 | `PORT` | No | HTTP listening port | `3000` |
 | `NODE_ENV` | No | `production` enables static file serving; otherwise Vite middleware | `development` |
 | `APP_URL` | No | Public URL of the application | `http://localhost:3000` |
@@ -86,7 +88,7 @@ Brota is configured to run on Vercel as a Vite SPA frontend + Serverless API rou
    - **Build Command**: `vite build` (or leave default `npm run build`).
    - **Output Directory**: `dist` (default for Vite).
 5. Add Environment Variables:
-   - `GEMINI_API_KEY`: Your Google Gemini API key.
+   - `OPENROUTER_API_KEY`: Your OpenRouter API key.
 6. Click **Deploy**.
 7. Once deployed, test the health check:
    ```

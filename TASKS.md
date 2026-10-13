@@ -1,21 +1,20 @@
 # TASKS.md — Live Work & Handoff
 
 ## Current Objective
-Configure Brota for serverless deployment on Vercel, ensuring zero-cost hosting, automatic HTTPS, and reliable mobile photo uploads.
+Migrate AI integration to OpenRouter (`OPENROUTER_API_KEY`) across vision plant identification, conversational botany chatbot, and quick tips.
 
 ## Active Work
 | Branch / Lane | Work | Status | Owner |
 | --- | --- | --- | --- |
-| `main` | Issue #8: Deploy Brota to Vercel and verify on mobile | In Progress | Cesar |
+| `feat/openrouter-migration-issue-10` | Issue #10: Migrate AI provider to OpenRouter (OPENROUTER_API_KEY) | In Progress | Cesar / Antigravity |
 
 ## Recently Done
-- [x] Configured Vercel serverless structure: `api/app.ts`, `api/index.ts`, `vercel.json`.
-- [x] Refactored `server.ts` to share `api/app.ts` while keeping local dev (`npm run dev`) and standalone Node intact.
-- [x] Added client-side image downscaling (`src/utils/imageUtils.ts`) in `PlantUploader.tsx` to prevent 413 Payload Too Large on Vercel's 4.5MB limit.
-- [x] Documented Vercel setup runbook in `docs/operations.md` and ADR-0004 in `DECISIONS.md`.
-- [x] Verified build (`./scripts/check.sh`), merged PR [#9](https://github.com/cesarwerlich/brota/pull/9), and closed Issue [#8](https://github.com/cesarwerlich/brota/issues/8).
+- [x] Implemented zero-dependency OpenRouter client (`api/openrouter.ts`) using native `fetch` with vision, JSON object format, and Markdown-fence extraction.
+- [x] Refactored `api/app.ts` endpoints (`/identify-plant`, `/chat`, `/quick-tips`, `/health`) to OpenRouter.
+- [x] Removed `@google/genai` dependency and cleaned up duplicate `vite` in `package.json`.
+- [x] Verified live OpenRouter `/api/quick-tips` and `/api/chat` calls against OpenRouter API.
+- [x] Updated `.env.example`, `CONTEXT.md`, `docs/operations.md`, `DECISIONS.md` (ADR-0005).
 
 ## Next Actions
-1. Link repository `cesarwerlich/brota` on the Vercel dashboard and add `GEMINI_API_KEY`.
-2. Deploy and test the live URL (`https://<project>.vercel.app/api/health`).
-3. Smoke test on mobile (photo upload, plant identification, chat with Flora, Meu Jardim saving).
+1. Open and merge PR for Issue #10.
+2. Add `OPENROUTER_API_KEY` to Vercel project environment variables.

@@ -44,3 +44,15 @@ Accepted decisions still in force for Brota.
   - Retain `server.ts` for local development (`npm run dev`) and standalone Node.js execution.
   - Implement client-side image downsampling to keep mobile photo uploads well below Vercel's 4.5MB payload limit.
 - **Consequences**: Zero recurring hosting cost, instant deployments on Git push, full backward compatibility for local development.
+
+---
+
+### ADR-0005: Migrate AI Provider to OpenRouter
+- **Status**: Accepted (2026-10-13)
+- **Context**: Cesar uses an OpenRouter API key (`OPENROUTER_API_KEY`) to unify AI model access across projects. Using OpenRouter allows flexible selection of vision models (`google/gemini-2.5-flash`, etc.) and chat completions via standard HTTP requests without locking into vendor-specific client SDKs like `@google/genai`.
+- **Decision**: 
+  - Standardize on `OPENROUTER_API_KEY` across all server endpoints (`/api/identify-plant`, `/api/chat`, `/api/quick-tips`, `/api/health`).
+  - Implement a lightweight, zero-dependency OpenRouter client (`api/openrouter.ts`) using native `fetch`.
+  - Remove `@google/genai` dependency to keep the production bundle smaller and faster.
+  - Maintain robust JSON parsing with fallback extraction for structured botanical taxonomy responses.
+- **Consequences**: Unified billing and API access on OpenRouter, zero extra npm SDK dependencies, model flexibility via environment variables.

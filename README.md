@@ -25,7 +25,7 @@ O objetivo central é aprender jardinagem e biologia botânica na prática, prom
 
 ### Pré-requisitos
 - **Node.js** (v18+) ou **Bun**
-- Chave de API do **Google Gemini** ([Google AI Studio](https://aistudio.google.com/))
+- Chave de API da **OpenRouter** ([openrouter.ai](https://openrouter.ai/))
 
 ### 1. Clonar e Instalar Dependências
 ```bash
@@ -36,13 +36,13 @@ cd brota
 *(ou manualmente com `npm install`)*
 
 ### 2. Configurar Variáveis de Ambiente
-Copie o arquivo de exemplo e insira sua chave da API Gemini:
+Copie o arquivo de exemplo e insira sua chave da API OpenRouter:
 ```bash
 cp .env.example .env
 ```
 Edite `.env`:
 ```env
-GEMINI_API_KEY="sua_chave_do_gemini"
+OPENROUTER_API_KEY="sua_chave_do_openrouter"
 PORT=3000
 ```
 
@@ -65,9 +65,9 @@ Executa a validação de tipos TypeScript (`tsc --noEmit`) e a compilação de p
 O Brota é intencionalmente enxuto e de fácil manutenção:
 - **Frontend**: React 19, Tailwind CSS v4, Lucide React, Framer Motion.
 - **Backend**: Express + TypeScript servindo a API botânica e a SPA.
-- **IA**: Google GenAI SDK (`@google/genai`) utilizando:
-  - `gemini-3.1-pro-preview` para identificação botânica detalhada e diagnóstico visual por imagem.
-  - `gemini-3.5-flash` / `gemini-3.1-flash-lite` para o chatbot botânico consultivo ("Flora") e dicas rápidas de cultivo.
+- **IA**: API OpenRouter (`https://openrouter.ai/api/v1/chat/completions`):
+  - Modelos multi-modais de visão (`google/gemini-2.5-flash`, etc.) para identificação botânica e diagnóstico de folhas.
+  - Chatbot botânico consultivo ("Flora") e dicas rápidas de cultivo.
 - **Armazenamento**: LocalStorage para o "Meu Jardim" e histórico de conversas, garantindo privacidade e custo zero de banco de dados.
 
 ---
