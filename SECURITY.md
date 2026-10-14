@@ -21,7 +21,8 @@ Brota is a private/family educational tool used with Cesar's goddaughter. The fo
 ## 2. Secrets & API Keys
 
 - **Never commit `.env` files or API credentials** to version control.
-- `GEMINI_API_KEY` is loaded securely via environment variables.
+- `OPENROUTER_API_KEY` is loaded securely via environment variables.
+- All AI endpoints enforce sliding-window rate limiting, input boundary delimiters, and max-token caps to prevent prompt injection and token depletion.
 - In production hosting, inject secrets using the hosting platform's native secret manager.
 
 ---
