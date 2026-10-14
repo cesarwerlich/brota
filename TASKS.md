@@ -9,6 +9,7 @@ Migrate AI integration to OpenRouter (`OPENROUTER_API_KEY`) across vision plant 
 | `main` | Test plant photo identification and tomato tracker with Cesar & goddaughter | In Progress | Cesar |
 
 ## Recently Done
+- [x] AI prompt injection defenses, in-memory IP rate limiting & input validation: merged PR [#21](https://github.com/cesarwerlich/brota/pull/21) and closed Issue [#20](https://github.com/cesarwerlich/brota/issues/20).
 - [x] Botanical catalog KB, botanical favicon & navigation refinements: merged PR [#19](https://github.com/cesarwerlich/brota/pull/19) and closed Issue [#18](https://github.com/cesarwerlich/brota/issues/18).
 - [x] Minimalist UI redesign, uncluttering & separate plant guide flow: merged PR [#17](https://github.com/cesarwerlich/brota/pull/17) and closed Issue [#16](https://github.com/cesarwerlich/brota/issues/16).
 - [x] Verified live production deployment on Vercel (`https://brota-cesarwerlichs-projects.vercel.app/`).
