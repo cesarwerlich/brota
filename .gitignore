@@ -8,3 +8,6 @@ coverage/
 !.env.example
 .worktrees/
 CLAUDE.local.md
+.vercel
+*.key
+*.pem
